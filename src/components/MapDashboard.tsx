@@ -1,7 +1,8 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { MapPin, Plus, Minus, RotateCcw, AlertTriangle } from "lucide-react";
+import { MapPin, AlertTriangle } from "lucide-react";
+import { UnifiedMap } from "./UnifiedMap";
 import type { SensorData } from "@/data/mockData";
 
 interface MapDashboardProps {
@@ -16,7 +17,6 @@ export function MapDashboard({ sensorData, selectedCity, onCityChange }: MapDash
     : sensorData.filter(sensor => sensor.city === selectedCity);
 
   const criticalRoads = filteredData.filter(sensor => sensor.severity === 'high');
-  const averageRqi = Math.round(filteredData.reduce((sum, sensor) => sum + sensor.rqi, 0) / filteredData.length);
 
   return (
     <div className="grid gap-6 lg:grid-cols-3">
@@ -54,38 +54,7 @@ export function MapDashboard({ sensorData, selectedCity, onCityChange }: MapDash
             </div>
           </CardHeader>
           <CardContent>
-            {/* Placeholder for actual map - will be replaced with Leaflet */}
-            <div className="h-96 bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg border-2 border-dashed border-blue-200 flex items-center justify-center relative">
-              <div className="text-center">
-                <MapPin className="h-12 w-12 mx-auto text-blue-400 mb-2" />
-                <h3 className="text-lg font-semibold text-blue-600 mb-1">Interactive Map Loading...</h3>
-                <p className="text-blue-500">Showing {filteredData.length} sensor points for {selectedCity}</p>
-                <div className="mt-4 flex justify-center space-x-2">
-                  <Badge variant="high" className="text-xs">{criticalRoads.length} Critical</Badge>
-                  <Badge variant="medium" className="text-xs">Avg RQI: {averageRqi}</Badge>
-                </div>
-              </div>
-              
-              {/* Map controls placeholder */}
-              <div className="absolute top-4 right-4 flex flex-col space-y-2">
-                <Button size="icon" variant="outline" className="h-8 w-8">
-                  <Plus className="h-4 w-4" />
-                </Button>
-                <Button size="icon" variant="outline" className="h-8 w-8">
-                  <Minus className="h-4 w-4" />
-                </Button>
-                <Button size="icon" variant="outline" className="h-8 w-8">
-                  <RotateCcw className="h-4 w-4" />
-                </Button>
-              </div>
-            </div>
-            
-            {/* Time range controls */}
-            <div className="mt-4 flex justify-center space-x-4">
-              <Button variant="outline" size="sm" className="bg-blue-600 text-white border-blue-600">30d</Button>
-              <Button variant="outline" size="sm">90d</Button>
-              <Button variant="outline" size="sm">180d</Button>
-            </div>
+            <UnifiedMap selectedCity={selectedCity} />
           </CardContent>
         </Card>
       </div>
@@ -108,8 +77,8 @@ export function MapDashboard({ sensorData, selectedCity, onCityChange }: MapDash
                 <div className="bg-red-500 h-2 rounded-full" style={{ width: '58%' }}></div>
               </div>
               <div className="flex justify-between text-xs text-gray-500 mt-1">
-                <span>752 potholes</span>
-                <span>30% detection rate</span>
+                <span>15 potholes detected</span>
+                <span>5 Critical, 6 Medium</span>
               </div>
             </div>
 
@@ -122,8 +91,8 @@ export function MapDashboard({ sensorData, selectedCity, onCityChange }: MapDash
                 <div className="bg-orange-500 h-2 rounded-full" style={{ width: '67%' }}></div>
               </div>
               <div className="flex justify-between text-xs text-gray-500 mt-1">
-                <span>721 potholes</span>
-                <span>29% detection rate</span>
+                <span>12 potholes detected</span>
+                <span>4 Critical, 4 Medium</span>
               </div>
             </div>
           </CardContent>
