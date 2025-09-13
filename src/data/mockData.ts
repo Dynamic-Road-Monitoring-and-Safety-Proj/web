@@ -5,7 +5,6 @@ export interface SensorData {
   timestamp: string;
   latitude: number;
   longitude: number;
-  city: 'Mohali' | 'Chandigarh';
   zone: string;
   roadName: string;
   rqi: number; // Road Quality Index (0-100)
@@ -33,16 +32,14 @@ export interface TrendData {
   rqi: number;
 }
 
-// Mock sensor data for Mohali and Chandigarh
+// Mock sensor data for the dashboard
 export const mockSensorData: SensorData[] = [
-  // Mohali data
   {
     id: '1',
     timestamp: '2025-09-01T07:36:39Z',
     latitude: 30.7046,
     longitude: 76.7179,
-    city: 'Mohali',
-    zone: 'Phase 1',
+    zone: 'Industrial Area Phase 1',
     roadName: 'Industrial Area Phase 1',
     rqi: 24,
     potholes: 7,
@@ -55,7 +52,6 @@ export const mockSensorData: SensorData[] = [
     timestamp: '2025-09-01T06:36:39Z',
     latitude: 30.7333,
     longitude: 76.7794,
-    city: 'Mohali',
     zone: 'Phase 3',
     roadName: 'Phase 3B2 Main Road',
     rqi: 45,
@@ -64,13 +60,11 @@ export const mockSensorData: SensorData[] = [
     priority: 4,
     repairStatus: 'scheduled'
   },
-  // Chandigarh data
   {
     id: '3',
     timestamp: '2025-09-01T05:36:39Z',
     latitude: 30.7333,
     longitude: 76.7794,
-    city: 'Chandigarh',
     zone: 'Sector 15',
     roadName: 'Jan Marg',
     rqi: 42,
@@ -85,18 +79,11 @@ export const mockSensorData: SensorData[] = [
 
 function generateRandomSensorData(count: number): SensorData[] {
   const data: SensorData[] = [];
-  const cities: Array<'Mohali' | 'Chandigarh'> = ['Mohali', 'Chandigarh'];
-  const zones = {
-    Mohali: ['Phase 1', 'Phase 2', 'Phase 3', 'Phase 4', 'Phase 5'],
-    Chandigarh: ['Sector 1', 'Sector 2', 'Sector 15', 'Sector 22', 'Sector 35']
-  };
+  const zones = ['Zone A', 'Zone B', 'Zone C', 'Zone D', 'Zone E', 'Sector 1', 'Sector 2', 'Phase 1', 'Phase 2', 'Phase 3'];
 
   for (let i = 4; i <= count + 3; i++) {
-    const city = cities[Math.floor(Math.random() * cities.length)];
-    const zone = zones[city][Math.floor(Math.random() * zones[city].length)];
-    const baseLatLng = city === 'Mohali' 
-      ? { lat: 30.7046, lng: 76.7179 }
-      : { lat: 30.7333, lng: 76.7794 };
+    const zone = zones[Math.floor(Math.random() * zones.length)];
+    const baseLatLng = { lat: 30.7190, lng: 76.7486 }; // General central coordinates
 
     const rqi = Math.floor(Math.random() * 100);
     const potholes = Math.floor(Math.random() * 15);
@@ -106,7 +93,6 @@ function generateRandomSensorData(count: number): SensorData[] {
       timestamp: new Date(Date.now() - Math.random() * 24 * 60 * 60 * 1000).toISOString(),
       latitude: baseLatLng.lat + (Math.random() - 0.5) * 0.1,
       longitude: baseLatLng.lng + (Math.random() - 0.5) * 0.1,
-      city,
       zone,
       roadName: `Road ${i} ${zone}`,
       rqi,
@@ -127,7 +113,7 @@ export const mockAlerts: AlertData[] = [
     type: 'critical_road',
     title: 'Critical Road Condition',
     description: 'Industrial Area Phase 1 - Multiple potholes detected',
-    location: 'Mohali, Phase 1',
+    location: 'Zone A, Phase 1',
     severity: 'high',
     timestamp: '2025-09-01T07:21:39Z',
     priority: 5
@@ -137,7 +123,7 @@ export const mockAlerts: AlertData[] = [
     type: 'deteriorating_trend',
     title: 'Deteriorating Trend',
     description: 'Airport Road showing 40% increase in pothole density',
-    location: 'Mohali, Phase 2',
+    location: 'Zone B, Phase 2',
     severity: 'medium',
     timestamp: '2025-09-01T06:21:39Z',
     priority: 3
@@ -147,7 +133,7 @@ export const mockAlerts: AlertData[] = [
     type: 'sensor_cluster',
     title: 'Sensor Cluster Alert',
     description: '12 potholes detected in Sector 22 within last 2 hours',
-    location: 'Chandigarh, Sector 22',
+    location: 'Zone C, Sector 22',
     severity: 'high',
     timestamp: '2025-09-01T05:21:39Z',
     priority: 4
@@ -182,20 +168,4 @@ export const dashboardStats = {
   newPotholes24h: 23,
   repairsDone24h: 7,
   systemEfficiency: 94.2
-};
-
-// City comparison data
-export const cityComparison = {
-  mohali: {
-    totalPotholes: 752,
-    detectionRate: 30,
-    rqi: 58,
-    repairs: 45
-  },
-  chandigarh: {
-    totalPotholes: 721,
-    detectionRate: 29,
-    rqi: 67,
-    repairs: 52
-  }
 };

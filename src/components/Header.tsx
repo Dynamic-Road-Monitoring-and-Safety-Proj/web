@@ -17,7 +17,7 @@ export function Header({ alertCount }: HeaderProps) {
             </div>
             <div>
               <h1 className="text-2xl font-bold">Road Quality Monitoring Dashboard</h1>
-              <p className="text-blue-100">Real-time road condition monitoring for Mohali & Chandigarh</p>
+              <p className="text-blue-100">Real-time road condition monitoring system</p>
             </div>
           </div>
           

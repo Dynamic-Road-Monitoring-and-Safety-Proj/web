@@ -23,6 +23,13 @@ uvicorn main:app --host 0.0.0.0 --port 8000 --reload
 
 - The server will be accessible at `http://<your-ip>:8000`
 - Uploaded files will be saved in `backend/app/uploads/csv` and `backend/app/uploads/video`
+- Get ip from `ipconfig getifaddr en0` (mac)
+
+For ngrok:
+
+```
+ngrok http 8000
+```
 
 ## API Endpoints
 

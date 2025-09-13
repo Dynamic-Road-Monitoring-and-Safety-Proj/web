@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import './App.css';
 import { Header } from '@/components/Header';
 import { StatusBar } from '@/components/StatusBar';
@@ -15,7 +14,6 @@ import {
 } from '@/data/mockData';
 
 function App() {
-  const [selectedCity, setSelectedCity] = useState<'Both' | 'Mohali' | 'Chandigarh'>('Both');
   
   // Filter priority roads (high severity)
   const priorityRoads = mockSensorData
@@ -47,11 +45,7 @@ function App() {
           {/* Main Content */}
           <div className="lg:col-span-3 space-y-6">
             {/* Map Dashboard */}
-            <MapDashboard 
-              sensorData={mockSensorData}
-              selectedCity={selectedCity}
-              onCityChange={setSelectedCity}
-            />
+            <MapDashboard sensorData={mockSensorData} />
 
             {/* Charts */}
             <ChartsGrid trendData={mockTrendData} />

@@ -42,7 +42,7 @@ export function Sidebar({ priorityRoads, stats }: SidebarProps) {
               <div className="text-xs text-gray-600 space-y-1">
                 <div className="flex items-center space-x-1">
                   <MapPin className="h-3 w-3" />
-                  <span>{road.city} • RQI: {road.rqi} • {road.potholes} potholes</span>
+                  <span>RQI: {road.rqi} • {road.potholes} potholes</span>
                 </div>
               </div>
               <Button size="sm" className="w-full mt-2 bg-red-600 hover:bg-red-700">
