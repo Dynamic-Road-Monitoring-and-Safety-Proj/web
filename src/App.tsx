@@ -3,9 +3,8 @@ import { Header } from '@/components/Header';
 import { StatusBar } from '@/components/StatusBar';
 import { DashboardStats } from '@/components/DashboardStats';
 import { MapDashboard } from '@/components/MapDashboard';
-import { AlertsPanel } from '@/components/AlertsPanel';
+import ActionableAlerts from '@/components/ActionableAlerts';
 import { ChartsGrid } from '@/components/ChartsGrid';
-import { Sidebar } from '@/components/Sidebar';
 import { 
   mockSensorData, 
   mockAlerts, 
@@ -20,12 +19,6 @@ function App() {
     .filter(sensor => sensor.severity === 'high')
     .sort((a, b) => b.priority - a.priority);
 
-  const sidebarStats = {
-    newPotholes24h: dashboardStats.newPotholes24h,
-    repairsDone24h: dashboardStats.repairsDone24h,
-    systemEfficiency: dashboardStats.systemEfficiency
-  };
-
   return (
     <div className="min-h-screen bg-gray-50">
       <Header alertCount={mockAlerts.length} />
@@ -37,26 +30,31 @@ function App() {
       
       <main className="container mx-auto px-6 py-6">
         {/* Dashboard Stats */}
-        <div className="mb-8">
+        <div className="mb-6">
           <DashboardStats stats={dashboardStats} />
         </div>
 
-        <div className="grid gap-6 lg:grid-cols-4">
-          {/* Main Content */}
-          <div className="lg:col-span-3 space-y-6">
-            {/* Map Dashboard */}
-            <MapDashboard sensorData={mockSensorData} />
-
-            {/* Charts */}
-            <ChartsGrid trendData={mockTrendData} />
-
-            {/* Alerts */}
-            <AlertsPanel alerts={mockAlerts} />
+        {/* Map-First Layout - Map takes full width prominently */}
+        <div className="space-y-6">
+          {/* Full-width dominant map */}
+          <div className="w-full">
+            <MapDashboard />
           </div>
 
-          {/* Sidebar */}
-          <div className="lg:col-span-1">
-            <Sidebar priorityRoads={priorityRoads} stats={sidebarStats} />
+          {/* Bottom section with charts and alerts side by side */}
+          <div className="grid gap-6 lg:grid-cols-3">
+            {/* Charts take 2 columns */}
+            <div className="lg:col-span-2">
+              <ChartsGrid trendData={mockTrendData} />
+            </div>
+
+            {/* Actionable Alerts take 1 column */}
+            <div className="lg:col-span-1">
+              <ActionableAlerts 
+                priorityRoads={priorityRoads} 
+                alerts={mockAlerts}
+              />
+            </div>
           </div>
         </div>
       </main>

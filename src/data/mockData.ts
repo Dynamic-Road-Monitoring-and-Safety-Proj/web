@@ -142,15 +142,22 @@ export const mockAlerts: AlertData[] = [
 
 // Mock trend data for charts
 export const mockTrendData: TrendData[] = [
-  { date: '2025-08-06', potholes: 45, repairs: 12, rqi: 65 },
-  { date: '2025-08-08', potholes: 42, repairs: 15, rqi: 68 },
-  { date: '2025-08-12', potholes: 38, repairs: 18, rqi: 72 },
-  { date: '2025-08-15', potholes: 44, repairs: 14, rqi: 69 },
-  { date: '2025-08-18', potholes: 40, repairs: 16, rqi: 71 },
-  { date: '2025-08-21', potholes: 35, repairs: 20, rqi: 74 },
-  { date: '2025-08-24', potholes: 48, repairs: 10, rqi: 66 },
-  { date: '2025-08-27', potholes: 52, repairs: 8, rqi: 62 },
-  { date: '2025-09-01', potholes: 100, repairs: 5, rqi: 58 }
+  { date: '2025-08-01', potholes: 52, repairs: 8, rqi: 58 },
+  { date: '2025-08-03', potholes: 48, repairs: 12, rqi: 61 },
+  { date: '2025-08-06', potholes: 45, repairs: 15, rqi: 65 },
+  { date: '2025-08-08', potholes: 42, repairs: 18, rqi: 68 },
+  { date: '2025-08-12', potholes: 38, repairs: 22, rqi: 72 },
+  { date: '2025-08-15', potholes: 44, repairs: 19, rqi: 69 },
+  { date: '2025-08-18', potholes: 40, repairs: 25, rqi: 71 },
+  { date: '2025-08-21', potholes: 35, repairs: 28, rqi: 74 },
+  { date: '2025-08-24', potholes: 48, repairs: 20, rqi: 66 },
+  { date: '2025-08-27', potholes: 52, repairs: 16, rqi: 62 },
+  { date: '2025-08-30', potholes: 65, repairs: 12, rqi: 55 },
+  { date: '2025-09-01', potholes: 72, repairs: 8, rqi: 52 },
+  { date: '2025-09-03', potholes: 68, repairs: 15, rqi: 56 },
+  { date: '2025-09-06', potholes: 55, repairs: 22, rqi: 63 },
+  { date: '2025-09-09', potholes: 42, repairs: 28, rqi: 68 },
+  { date: '2025-09-12', potholes: 38, repairs: 32, rqi: 72 }
 ];
 
 // Dashboard summary stats
