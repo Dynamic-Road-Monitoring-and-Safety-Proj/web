@@ -31,6 +31,15 @@ For ngrok:
 ngrok http 8000
 ```
 
+For LocalTunnel:
+npm install -g localtunnel
+lt --port 8000 --subdomain rstm  
+output:
+  ```your url is: https://rstm.loca.lt```
+- visit the url and put host ip address as password
+For IP run:
+```curl -s https://ipv4.icanhazip.com```
+
 ## API Endpoints
 
 ### 1. Upload CSV

@@ -59,3 +59,5 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+/backend/app/uploads/csv
+/backend/app/__pycache__
