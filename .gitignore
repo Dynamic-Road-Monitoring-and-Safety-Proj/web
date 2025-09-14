@@ -61,3 +61,4 @@ yarn-error.log*
 next-env.d.ts
 /backend/app/uploads/csv
 /backend/app/__pycache__
+/backend/app/uploads
