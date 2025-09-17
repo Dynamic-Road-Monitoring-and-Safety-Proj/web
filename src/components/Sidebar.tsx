@@ -8,7 +8,7 @@ import {
   TrendingUp,
   TrendingDown
 } from "lucide-react";
-import type { SensorData } from "@/data/mockData";
+import type { SensorData } from "@/types";
 
 interface SidebarProps {
   priorityRoads: SensorData[];
@@ -34,7 +34,7 @@ export function Sidebar({ priorityRoads, stats }: SidebarProps) {
           {priorityRoads.slice(0, 3).map((road) => (
             <div key={road.id} className="p-3 bg-red-50 rounded-lg border border-red-200">
               <div className="flex items-center justify-between mb-2">
-                <h4 className="font-semibold text-sm">{road.roadName}</h4>
+                <h4 className="font-semibold text-sm">{road.road_name}</h4>
                 <Badge variant="high" className="text-xs">
                   Priority {road.priority}
                 </Badge>
@@ -42,7 +42,7 @@ export function Sidebar({ priorityRoads, stats }: SidebarProps) {
               <div className="text-xs text-gray-600 space-y-1">
                 <div className="flex items-center space-x-1">
                   <MapPin className="h-3 w-3" />
-                  <span>RQI: {road.rqi} • {road.potholes} potholes</span>
+                  <span>• RQI: {road.rqi} • {road.pothole_count} potholes</span>
                 </div>
               </div>
               <Button size="sm" className="w-full mt-2 bg-red-600 hover:bg-red-700">

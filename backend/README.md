@@ -18,8 +18,15 @@ pip install fastapi uvicorn python-multipart
 Start the FastAPI server:
 
 ```sh
+cd app
+# Using virtual environment (recommended for geocoding features):
+python -m uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+
+# Or using system uvicorn:
 uvicorn main:app --host 0.0.0.0 --port 8000 --reload
 ```
+
+**Note**: For full geocoding functionality, use the virtual environment Python to ensure all dependencies (like `aiohttp`) are available.
 
 - The server will be accessible at `http://<your-ip>:8000`
 - Uploaded files will be saved in `backend/app/uploads/csv` and `backend/app/uploads/video`

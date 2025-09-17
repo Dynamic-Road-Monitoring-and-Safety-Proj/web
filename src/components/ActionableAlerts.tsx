@@ -7,7 +7,7 @@ import {
   ArrowRight,
   Zap
 } from "lucide-react";
-import type { SensorData, AlertData } from "@/data/mockData";
+import type { SensorData, AlertData } from "@/types";
 
 interface ActionableAlertsProps {
   priorityRoads: SensorData[];
@@ -26,10 +26,10 @@ export default function ActionableAlerts({
     ...priorityRoads.slice(0, 4).map(road => ({
       id: road.id,
       type: 'road_repair',
-      message: `${road.roadName} - RQI: ${road.rqi}/100`,
+      message: `${road.road_name} - RQI: ${road.rqi}/100`,
       timestamp: new Date().toISOString(),
       priority: road.rqi < 30 ? 3 : road.rqi < 50 ? 2 : 1,
-      location: road.roadName,
+      location: road.road_name,
       severity: road.rqi < 30 ? 'high' : road.rqi < 50 ? 'medium' : 'low'
     })),
     // Recent alerts

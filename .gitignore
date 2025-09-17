@@ -62,3 +62,6 @@ next-env.d.ts
 /backend/app/uploads/csv
 /backend/app/__pycache__
 /backend/app/uploads
+
+*.pyc
+__pycache__/

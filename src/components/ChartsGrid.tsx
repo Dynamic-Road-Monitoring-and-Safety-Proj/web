@@ -11,10 +11,16 @@ import {
   ResponsiveContainer
 } from 'recharts';
 import { TrendingUp } from "lucide-react";
-import type { TrendData } from "@/data/mockData";
+// Legacy interface for backward compatibility with existing ChartGrid component
+interface LegacyTrendData {
+  date: string;
+  potholes: number;
+  repairs: number;
+  rqi: number;
+}
 
 interface ChartsGridProps {
-  trendData: TrendData[];
+  trendData: LegacyTrendData[];
 }
 
 type ChartMetric = 'potholes' | 'repairs' | 'rqi';

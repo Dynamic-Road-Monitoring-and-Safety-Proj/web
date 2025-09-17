@@ -1,12 +1,7 @@
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { Settings, RefreshCw, FileDown, Bell } from "lucide-react";
+import { Settings } from "lucide-react";
 
-interface HeaderProps {
-  alertCount: number;
-}
-
-export function Header({ alertCount }: HeaderProps) {
+export function Header() {
   return (
     <header className="bg-white border-b border-gray-200 shadow-sm">
       <div className="container mx-auto px-6 py-4">
@@ -22,30 +17,6 @@ export function Header({ alertCount }: HeaderProps) {
           </div>
           
           <div className="flex items-center space-x-3">
-            <div className="relative">
-              <Button variant="outline" size="icon" className="border-gray-200 text-gray-600 hover:bg-gray-50">
-                <Bell className="h-4 w-4" />
-              </Button>
-              {alertCount > 0 && (
-                <Badge 
-                  variant="destructive" 
-                  className="absolute -top-2 -right-2 px-1.5 min-w-[1.25rem] h-5 flex items-center justify-center text-xs"
-                >
-                  {alertCount}
-                </Badge>
-              )}
-            </div>
-            
-            <Button variant="outline" size="sm" className="border-gray-200 text-gray-600 hover:bg-gray-50">
-              <RefreshCw className="h-4 w-4 mr-2" />
-              Refresh
-            </Button>
-            
-            <Button variant="outline" size="sm" className="border-gray-200 text-gray-600 hover:bg-gray-50">
-              <FileDown className="h-4 w-4 mr-2" />
-              Export
-            </Button>
-            
             <Button variant="outline" size="icon" className="border-gray-200 text-gray-600 hover:bg-gray-50">
               <Settings className="h-4 w-4" />
             </Button>

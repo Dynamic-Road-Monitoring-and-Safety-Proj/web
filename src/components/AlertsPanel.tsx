@@ -9,7 +9,7 @@ import {
   MapPin, 
   Eye 
 } from "lucide-react";
-import type { AlertData } from "@/data/mockData";
+import type { AlertData } from "@/types";
 
 const alertIcons = {
   critical_road: AlertTriangle,

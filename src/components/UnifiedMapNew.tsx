@@ -1,15 +1,16 @@
-import { useState } from 'react';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import { divIcon } from 'leaflet';
 import { Badge } from '@/components/ui/badge';
-import { 
-  DUMMY_CHANDIGARH_POTHOLES, 
-  type PotholeLocation 
-} from '@/data/dummyMapData';
-import { 
-  DUMMY_MOHALI_POTHOLES, 
-  COMBINED_MAP_CONFIG 
-} from '@/data/dummyMohaliData';
+import type { PotholeLocation } from '@/types';
+import 'leaflet/dist/leaflet.css';
+
+// Temporary empty data while we migrate to real API data
+const DUMMY_CHANDIGARH_POTHOLES: PotholeLocation[] = [];
+const DUMMY_MOHALI_POTHOLES: PotholeLocation[] = [];
+const COMBINED_MAP_CONFIG = {
+  center: [30.7333, 76.7794] as [number, number],
+  zoom: 12
+};
 import 'leaflet/dist/leaflet.css';
 
 // Create custom markers for different severity levels
@@ -45,8 +46,6 @@ interface UnifiedMapProps {
 }
 
 export function UnifiedMap({ className }: UnifiedMapProps) {
-  const [selectedPothole, setSelectedPothole] = useState<PotholeLocation | null>(null);
-  
   // Combine all pothole data for general view
   const potholeData = [
     ...DUMMY_CHANDIGARH_POTHOLES,
@@ -86,7 +85,7 @@ export function UnifiedMap({ className }: UnifiedMapProps) {
       
       <div className="h-96 w-full rounded-lg overflow-hidden border">
         <MapContainer
-          center={[mapConfig.center.lat, mapConfig.center.lng]}
+          center={mapConfig.center}
           zoom={mapConfig.zoom}
           style={{ height: '100%', width: '100%' }}
           className="z-0"
@@ -103,7 +102,8 @@ export function UnifiedMap({ className }: UnifiedMapProps) {
               icon={createCustomIcon(pothole.severity)}
               eventHandlers={{
                 click: () => {
-                  setSelectedPothole(pothole);
+                  // Handle pothole selection if needed
+                  console.log('Pothole selected:', pothole);
                 },
               }}
             >
